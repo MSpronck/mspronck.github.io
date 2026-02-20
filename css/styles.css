@@ -109,6 +109,11 @@ header .header-right {
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
+    font-size: var(--font-size-header);
+    white-space: unset;
+    min-width: auto;
+    padding-top: calc((var(--header-height) - var(--font-size-header)) / 2);
+    padding-bottom: calc((var(--header-height) - var(--font-size-header)) / 2);
   }
 
   header .header-left {
