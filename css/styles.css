@@ -1,0 +1,430 @@
+/* Style sheet for Myrthe Spronck's personal webpage */
+
+/* Colour variables & sizes */
+:root {
+  --white: white;
+  --black: black;
+  --main-dark:  #102D26;
+  --main-medium: #256A5A;
+  --main-light: #F1FAF5;
+  --contrast-dark: #3B3C68;
+  --contrast-medium: #4F518C;
+  --contrast-light: #898BBD;
+
+  --font-size-biggest: 28px;
+  --font-size-header: 22px;
+  --font-size-subheader: 18px;
+  --font-size-subsubheader: 16px;
+  --font-size-navbar: 16px;
+  --font-size-footer: 12px;
+  --font-size-tiny: 10px;
+  --font-size-normal: 16px;
+
+  --header-height: calc(9px*7);
+  --navbar-height: 44px;
+  --footer-height: 30px;
+  --page-width: 950px;
+  --header-image-width: calc(9px*38);
+  --min-header-width: 460px;
+
+  --padding-small: 5px;
+  --padding-medium: 10px;
+  --padding-big: 16px;
+  --padding-text: 1.5em;
+}
+
+/* Layout basic, main, footer, header, navbar */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--main-light);
+  color: var(--black);
+  font-size: var(--font-size-normal);
+}
+
+.base-layout {
+  position:relative;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+main {
+  padding-top: var(--padding-medium);
+  padding-bottom: calc(var(--footer-height) + var(--padding-medium));
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: var(--main-light);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--page-width);
+  min-height: calc(100vh - var(--footer-height) - var(--navbar-height) - var(--header-height) - 50px);
+}
+
+header {
+  display: flex;
+  padding: 0px;
+  text-align: center;
+  background-color: var(--main-dark);
+  color: var(--main-dark);
+  height: var(--header-height);
+  place-content: center;
+  place-items: center;
+}
+
+header h1 {
+  font-size: var(--font-size-biggest);
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: var(--main-light);
+  padding-top: calc((var(--header-height) - var(--font-size-biggest)) / 2);
+  padding-bottom: calc((var(--header-height) - var(--font-size-biggest)) / 2);
+  padding-left: 0px;
+  padding-right: 0px;
+  min-width: var(--min-header-width);
+  white-space: nowrap;
+}
+
+header .header-left {
+  height: var(--header-height);
+  width: var(--header-image-width);
+  background-image: url("../images/left.png");
+  background-repeat: repeat-y;
+  background-position: right top;
+  pointer-events: none;
+  cursor: default;
+}
+
+header .header-right {
+  height: var(--header-height);
+  width: var(--header-image-width);
+  background-image: url("../images/right.png");
+  background-repeat: repeat-y;
+  background-position: left top;
+  pointer-events: none;
+  cursor: default;
+}
+
+@media screen and (max-width: 600px) {
+  header h1 {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  header .header-left {
+    display: none
+  }
+
+  header .header-right {
+    display: none
+  }
+}
+
+nav {
+  height: var(--navbar-height);
+  overflow: hidden; 
+  background-color: var(--main-medium); 
+  text-align: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: var(--font-size-navbar);
+  z-index: 100;
+}
+
+nav a {
+  float: none; 
+  display: inline-block; 
+  color: var(--main-light); 
+  text-align: center; 
+  padding-left: var(--padding-big); 
+  padding-right: var(--padding-big);
+  padding-top: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+  padding-bottom: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+  text-decoration: none; 
+  font-weight: bold;
+}
+
+nav a:hover {
+  background-color: var(--main-light); 
+  color: var(--main-dark); 
+}
+
+nav .small-nav-toggle {
+  display: none;
+}
+
+.noscript {
+  background-color: var(--main-dark);
+  color: var(--main-light);
+  text-align: center;
+  padding-top: var(--padding-medium);
+  padding-bottom: var(--padding-medium);
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    background-color: var(--contrast-dark);
+  }
+
+  nav a {
+    display: none;
+    width: 100%;
+    padding-top: calc((var(--navbar-height) - var(--font-size-navbar)) / 4);
+    padding-bottom: calc((var(--navbar-height) - var(--font-size-navbar)) / 4);
+  }
+
+  nav .navbar-first {
+    padding-top: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+  }
+
+  nav .navbar-last {
+    padding-bottom: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+  }
+
+  nav .small-nav-toggle {
+    display: inline-block;
+    background-color: var(--main-medium);
+    padding-top: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+    padding-bottom: calc((var(--navbar-height) - var(--font-size-navbar)) / 2);
+  }
+
+  nav a:hover {
+    background-color: var(--contrast-light); 
+    color: var(--contrast-dark); 
+  }
+
+  nav .small-nav-toggle:hover {
+    background-color: var(--contrast-medium);
+    color: var(--main-light);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .small-nav-visible {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .small-nav-visible a {
+    display: inline-block;
+  }
+
+  .small-nav-visible .small-nav-toggle {
+    background-color: var(--contrast-medium);
+  }
+} 
+
+footer {
+  padding: 0px; 
+  text-align: center; 
+  position: absolute;
+  width: 100%;
+  height: var(--footer-height);
+  bottom: 0; 
+  font-size: var(--font-size-footer);
+  border-style: solid none none none;
+  border-width: medium;
+  color: var(--main-light);
+  background: var(--main-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+} 
+
+
+/* Basic elements */
+body h2 {
+  font-size: var(--font-size-header);
+  color: var(--main-dark);
+}
+
+/* Lists */
+ul {
+  list-style-type:square;
+  margin-top: var(--padding-small);
+}
+
+ul ul {
+  list-style-type:disc;
+}
+
+.pre-list {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+/* Notes */
+.tiny-note {
+  font-size: var(--font-size-tiny);
+  color:var(--main-dark);
+  padding: 0px;
+}
+
+/* Links */
+main a:link {
+  color: var(--contrast-medium);
+}
+
+main a:visited {
+  color: var(--contrast-light);
+}
+
+.noscript a:link {
+  color: var(--contrast-light);
+}
+
+.noscript a:visited {
+  color: var(--contrast-light);
+}
+
+/* Collapsibles */
+.collapsible-block {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.collapsible-header {
+  background-color: var(--main-light);
+  color: var(--black);
+  cursor: pointer;
+  width: auto;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: var(--font-size-subheader);
+  font-weight:bold;
+}
+
+.collapsible-header-small {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.collapsible-header:before {
+  content: '▶'; 
+  font-size: var(--font-size-subheader);
+  color: inherit;
+  float: left;
+  font-style: normal;
+  padding: 0px;
+  line-height: 115%;
+}
+
+.collapsible-header-small:before {
+  font-size: var(--font-size-normal);
+}
+
+.collapsible-header:hover {
+  color: var(--contrast-medium);
+}
+
+.collapsible-active:before {
+  content: "▼"; 
+}
+
+.collapsible-content {
+  display: block;
+  overflow: hidden;
+  background-color: var(--main-light);
+} 
+
+.collapsible-subheader {
+  padding-left: var(--padding-text);
+}
+
+.collapsible-content ul {
+  margin-top: var(--padding-medium);
+  margin-bottom: var(--padding-small);
+  margin-left: 1em;
+}
+
+.collapsible-content ul ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+/* Text formatting for papers*/
+.paper-title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--font-size-subsubheader);
+  padding-left: var(--padding-text);
+}
+
+.paper-authors {
+  font-style: italic;
+  font-size: var(--font-size-subsubheader);
+  padding-left: var(--padding-text);
+}
+
+.paper-published {
+  font-size: var(--font-size-subsubheader);
+  padding-left: var(--padding-text);
+  font-style: normal;
+}
+
+.paper-info ul {
+  margin-top: var(--padding-small);
+  margin-bottom: 0px;
+}
+
+.paper-info ul li {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+/* prevent images from being dragged */
+img {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* positioning on index page */
+.index-main {
+  display:grid;
+  grid-template-columns: auto auto;
+  column-gap: 50px;
+  justify-content: space-between;
+  align-content: start;
+}
+
+.index-text {
+  max-width: calc(var(--page-width) - 275px);
+}
+
+.index-image {
+  text-align: center;
+  max-width: 275px;
+  min-width: 100px;
+  position: relative;
+  top: 25px;
+}
+
+@media screen and (max-width: 600px) {
+.index-main {
+  grid-template-columns: none;
+  grid-template-rows: auto auto;
+  row-gap: var(--padding-big);
+}
+
+.index-image {
+  justify-self: center;
+  position: unset;
+}
+
+}

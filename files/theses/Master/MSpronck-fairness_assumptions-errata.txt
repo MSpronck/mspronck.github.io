@@ -1,0 +1,25 @@
+%% Collected errata on Fairness Assumptions in the Modal μ-Calculus, Myrthe Spronck's Master Thesis %%
+
+General notes: 
+    This thesis uses the term fair reachability where later work by me uses the term weak hyperfairness. Strong hyperfairness is not covered in this thesis, since when blocking
+    actions are not considered (such as in this thesis) weak and strong hyperfairness coincide.
+    Similarly, this thesis uses the term complete to specifically refer to paths that are infinite or end in a deadlock state. In later work, completeness is always with respect to
+    a completeness criterion and hence may be defined differently.
+    
+    A better formula (in terms of presentation) for strong fairness is given in the Progress, Justness and Fairness in the Modal μ-Calculus paper. This is similar but not identical
+    to the one given in Appendix D.2. The one in the appendix has not been proven correct, the one from the paper has.
+    Lise Arendsen's Master Thesis contains an even better strong fairness formula, which is linear in the number of actions rather than exponential.
+    
+    There are several formulae in this thesis for which no equivalent formula appears in the Progress, Justness and Fairness in the Modal μ-Calculus paper, specifically in Chapter
+    7. These formulae can be used, but it is important to remember that they have not been proven correct.
+
+Regarding the GitHub files/ files in appendices:    
+    The bat file contained several issues, most notably it only worked for my specific file structure at the time (classic "it works on my machine") and it only worked with the
+    then-current version of mCRL2. These issues should now be fixed. I have not otherwise improved the file or the calls to mCRL2 tools, even if I would do it differently now.
+    This was the first batch script I ever wrote and I have not written any since beyond patching these issues, so I make no guarantees about the quality of the new file either, but
+    at least it should run now.
+    
+page 21 line 1: the variable T here should be Y
+
+page 35 line 7: the word "progress" is forgotten. It should be "[..] the combination of assuming progress and fairness [..]".
+

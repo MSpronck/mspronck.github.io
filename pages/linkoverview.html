@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <title>Plain links | Myrthe Spronck</title>
+    <!-- <link rel="shotcut icon" href="/images/icon.ico"/>  -->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <meta name="author" content="Myrthe Spronck"/>
+    <meta name="edited" content="19 Feb 2026"/>
+</head>
+
+<body>
+
+    <div class="base-layout">
+
+    <div class="noscript" id="enabled-script" style="display:none;"></div>
+
+    <main>
+    <p class="pre-list">Links to all pages:</p>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Education</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="hobbies.html">Non-Academic</a></li>
+    </ul>
+
+    </div>
+
+<script defer>
+    var x = document.getElementById("enabled-script");
+    x.innerHTML = `
+        <p>This page only exists for users who cannot or do not want to enable Javascript. You have enabled JavaScript. Why are you here?</p>
+        `;
+    x.style.display = "inline-block";
+</script>
+    
+</body>
+</html> 

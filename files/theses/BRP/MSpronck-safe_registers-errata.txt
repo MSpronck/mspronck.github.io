@@ -1,0 +1,72 @@
+%% Collected errata on "Safe registers and Aravind's BLRU algorithm for mutual exclusion in mCRL2", a Bachelor Research Project by Myrthe Spronck. %%
+
+Page 4, line 9:
+    It is stated that, for the purpose of comparing Lamport's Bakery Algorithm to a bakery or McDonald's, one should imagine that every order takes equally
+    long and therefore orders are handled in a first-in first-out order.
+    The statement that the Bakery Algorithm treats tickets in increasing order, and thus services "orders" in a first-in first-out order is correct. So this 
+    line is not exactly incorrect, but the comparison is potentially misleading: it need not be the case that every access to the critical section has the
+    same duration, it is only the case that the algorithm does not attempt to optimize by letting faster accesses go before slower ones. In fact, the
+    algorithm has no way of knowing how long a thread needs the critical section.
+    
+Page 6, line 26:
+    Remark 1 explains how Aravind's BLRU algorithm prevents two threads from writing to a register at the same time. This claim is correct, but the argument 
+    given contains a minor mistake. 
+    It is stated that "since [a thread] has not completed its exit protocol, no other thread could have gained access to the critical section yet", so it is 
+    taken as given that no thread can enter its critical section as long as any thread is still in the process of executing its exit protocol.
+    This is not necessarily correct, since one could imagine a mutual exclusion algorithm where there are still instructions in the exit protocol after those
+    that already give another thread access to the critical section. In fact, this is the case for Aravind's BLRU algorithm. Consider the following executions:
+        T1 invokes its entry protocol, 
+            sets flag[1] to true (line 2), 
+            sets stage[1] to 0 (line 4), 
+            sees flag[0] = false and so 
+            passes the wait on line 5, 
+            and then stalls.
+        T0 invokes its entry protocol, 
+            sets flag[0] to true (line 2), 
+            sets stage[0] to 0 (line 4), 
+            sees flag[0] = true and date[0] = 0 < 1 = date[1] so 
+            passes line 5, 
+            sets stage[0] to 1 (line 6), 
+            sees stage[1] 0 so 
+            completes its entry protocol.
+        In T0's exit protocol, 
+            it sets date[0] to 2 (line 9) then 
+            sets stage[0] to 0 (line 12) and then 
+            stalls, not having completed its exit protocol yet.
+        T1 starts up again, 
+            sets stage[1] to 1 (line 6) and 
+            sees stage[0] = 0 (line 7) and so 
+            completes its entry protocol and accesses its critical section.
+    However, it is still the case that the write operations on lines 9 and 11 come before the operations that let another thread enter the critical section
+    (lines 12 and 13). Hence, there are no concurrent writes to the date registers.
+    
+page 11, line 24:
+    "happy" should of course be "happen"
+    
+page 16, line 11:
+    "states" should be "stated"
+    
+page 16, line 35 to page 17, line 7:
+    The formula given here does not capture eventual access under fairness, not even the algorithm-specific form of fairness we decided to look at here.
+    What we wanted to capture was that on every path, whenever wish(id) is executed there is eventually an occurrence of enter(id) or the path contains an 
+    infinite loop of Loop actions.
+    However, what this formula instead captures is that on every path, whenever wish(id) is executed there is eventually an occurrence of enter(id) or the 
+    path contains a state that admits an infinite loop of Loop actions.
+    The difference being that it could be that a specific path does not itself have an infinite sequence of Loop actions, but does contain a state that admits
+    such a sequence.
+    Consider the following simple transition system:
+        s0 -wish(0)--> s1 --tau-> s2
+                      ∧  |
+                      |  Loop
+                   Loop  |
+                      |  ∨
+                       s3 
+    This transition system satisfies the property in s0 because after wish(0), s1 is entered which admits an infinite Loop-sequence. But this transition
+    system also contains the path s0 wish(0) s1 tau s2, on which after wish(0) neither enter(0) not an infinite sequence of Loop actions occurs.
+    Aravind's algorithm does satisfy eventual access under the justness assumption, as is covered in Just Verification of Mutual Exclusion Algorithms, but 
+    this formula is not the correct way to check for it.
+    
+page 20, line 34:
+    Here we suggest that Kessels' algorithm might be correct with safe registers. We showed in Just Verification of Mutual Exclusion Algorithms that this is
+    not the case. While Kessels does talk about "arbitration at a lower level" this is not a reference to safe and atomic registers, but rather is about the
+    extension of the algorithm to an N-thread solution.
