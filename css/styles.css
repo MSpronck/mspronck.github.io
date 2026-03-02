@@ -87,7 +87,7 @@ header h1 {
 header .header-left {
   height: var(--header-height);
   width: var(--header-image-width);
-  background-image: url("../images/left.png");
+  background-image: url("../images/left.svg");
   background-repeat: repeat-y;
   background-position: right top;
   pointer-events: none;
@@ -97,7 +97,7 @@ header .header-left {
 header .header-right {
   height: var(--header-height);
   width: var(--header-image-width);
-  background-image: url("../images/right.png");
+  background-image: url("../images/right.svg");
   background-repeat: repeat-y;
   background-position: left top;
   pointer-events: none;
